@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->bigIncrements('student_id'); // Ensure this is a big integer
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->string('nationality')->nullable();
-            $table->date('birthdate')->nullable();
-            $table->text('address')->nullable();
+            $table->bigIncrements('course_id');
+            $table->string('course_name');
+            $table->unsignedBigInteger('university_id');
+            $table->string('duration')->nullable();
+            $table->decimal('fees', 10, 2)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('university_id')->references('university_id')->on('universities');
         });
     }
 
