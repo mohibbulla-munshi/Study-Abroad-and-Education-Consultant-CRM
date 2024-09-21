@@ -2,47 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\University;
 use Illuminate\Http\Request;
 
 class UniversityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return University::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'nullable|string|max:255',
+        ]);
+
+        $university = University::create($request->all());
+        return response()->json($university, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return University::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+        ]);
+
+        $university = University::findOrFail($id);
+        $university->update($request->all());
+        return response()->json($university, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        University::destroy($id);
+        return response()->json(null, 204);
     }
 }

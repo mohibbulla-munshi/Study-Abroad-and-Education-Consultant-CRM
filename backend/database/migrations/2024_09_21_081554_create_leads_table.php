@@ -12,8 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('leads', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('lead_id')->autoIncrement(); // Primary Key
+            $table->string('name', 100)->nullable(); // Lead name
+            $table->string('email', 100)->nullable(); // Lead email
+            $table->string('phone', 15)->nullable(); // Lead phone number
+            $table->string('interested_country', 100)->nullable(); // Interested country
+            $table->string('interested_course', 100)->nullable(); // Interested course
+            $table->enum('lead_status', ['New', 'Contacted', 'Follow-up', 'Converted', 'Lost'])->default('New'); // Lead status
+            $table->unsignedBigInteger('assigned_agent')->nullable(); // Foreign key referencing agents
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); // Creation timestamp
+            
+            // Foreign key constraint
+            $table->foreign('assigned_agent')->references('agent_id')->on('agents')->onDelete('set null');
         });
     }
 

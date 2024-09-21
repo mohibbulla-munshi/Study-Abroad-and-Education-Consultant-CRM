@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('document_id')->autoIncrement(); // Primary Key
+            $table->unsignedBigInteger('student_id'); // Foreign key referencing students
+            $table->enum('document_type', ['Passport', 'Transcript', 'SOP', 'LOR', 'Visa Documents', 'Other']); // Type of document
+            $table->string('document_url', 255)->nullable(); // URL to the document
+            $table->timestamp('uploaded_on')->default(DB::raw('CURRENT_TIMESTAMP')); // Upload timestamp
+            
+            // Foreign key constraints
+            $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
         });
     }
 

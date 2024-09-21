@@ -2,47 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Application::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'course_id' => 'required|exists:courses,id',
+            'status' => 'required|string',
+        ]);
+
+        $application = Application::create($request->all());
+        return response()->json($application, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return Application::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'student_id' => 'nullable|exists:students,id',
+            'course_id' => 'nullable|exists:courses,id',
+            'status' => 'nullable|string',
+        ]);
+
+        $application = Application::findOrFail($id);
+        $application->update($request->all());
+        return response()->json($application, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Application::destroy($id);
+        return response()->json(null, 204);
     }
 }
+
