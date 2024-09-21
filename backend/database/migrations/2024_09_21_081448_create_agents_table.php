@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('agents', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('agent_id'); // Auto-incrementing ID
+            $table->string('agent_name', 100); // Agent name
+            $table->string('email', 100)->nullable(); // Email address
+            $table->string('phone', 15)->nullable(); // Phone number
+            $table->timestamps(); // Created at and Updated at
         });
     }
 

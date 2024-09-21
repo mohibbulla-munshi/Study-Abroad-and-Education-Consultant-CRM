@@ -2,47 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VisaApplication;
 use Illuminate\Http\Request;
 
 class VisaApplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return VisaApplication::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'status' => 'required|string',
+            'interview_date' => 'nullable|date',
+        ]);
+
+        $visaApplication = VisaApplication::create($request->all());
+        return response()->json($visaApplication, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return VisaApplication::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'student_id' => 'nullable|exists:students,id',
+            'status' => 'nullable|string',
+            'interview_date' => 'nullable|date',
+        ]);
+
+        $visaApplication = VisaApplication::findOrFail($id);
+        $visaApplication->update($request->all());
+        return response()->json($visaApplication, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        VisaApplication::destroy($id);
+        return response()->json(null, 204);
     }
 }

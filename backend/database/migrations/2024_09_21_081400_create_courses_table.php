@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('student_id'); // Ensure this is a big integer
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('nationality')->nullable();
+            $table->date('birthdate')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }
