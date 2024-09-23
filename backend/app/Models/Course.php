@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+
+    // Table name (optional, only if it's not 'courses' by default)
+    protected $table = 'courses';
+
+    // Primary key (if not the default 'id')
+    protected $primaryKey = 'course_id';
+
+    // Allow mass assignment for these fields
+    protected $fillable = [
+        'course_name',
+        'university_id',
+        'duration',
+        'fees',
+        'description',
+    ];
+
+    // Define the relationship with the University model
+    public function university()
+    {
+        return $this->belongsTo(University::class, 'university_id');
+    }
 }
