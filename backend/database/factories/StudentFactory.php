@@ -15,8 +15,8 @@ class StudentFactory extends Factory
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->numerify(str_repeat('#', 15)), // 15-digit number
-            'nationality' => substr($this->faker->country, 0, 50), // Limit to 50 characters
+            'phone' => $this->faker->numerify(str_repeat('#', 15)), // Generate a random 15-digit number
+            'nationality' => $this->faker->country,
             'birthdate' => $this->faker->date(),
             'address' => $this->faker->address,
             'created_at' => now(),

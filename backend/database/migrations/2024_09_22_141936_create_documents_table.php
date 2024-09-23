@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('document_url', 255)->nullable(); // URL to the document
             $table->timestamp('uploaded_on')->default(DB::raw('CURRENT_TIMESTAMP')); // Upload timestamp
             
+            // Add timestamps
+            $table->timestamps(); // Adds created_at and updated_at columns
+            
             // Foreign key constraints
             $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
         });
