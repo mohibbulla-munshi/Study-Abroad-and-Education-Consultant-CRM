@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('interested_course', 100)->nullable(); // Interested course
             $table->enum('lead_status', ['New', 'Contacted', 'Follow-up', 'Converted', 'Lost'])->default('New'); // Lead status
             $table->unsignedBigInteger('assigned_agent')->nullable(); // Foreign key referencing agents
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); // Creation timestamp
-            
+            $table->timestamps(); // Adds created_at and updated_at columns
+    
             // Foreign key constraint
             $table->foreign('assigned_agent')->references('agent_id')->on('agents')->onDelete('set null');
         });
