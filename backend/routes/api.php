@@ -11,6 +11,7 @@ use App\Http\Controllers\VisaApplicationController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\CommunicationLogController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::apiResource('visa-applications', VisaApplicationController::class);
 Route::apiResource('documents', DocumentController::class);
 Route::apiResource('leads', LeadController::class);
 Route::apiResource('communication-logs', CommunicationLogController::class);
+Route::post('/register', [UserController::class, 'register']);
+

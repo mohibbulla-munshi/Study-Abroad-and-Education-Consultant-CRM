@@ -16,6 +16,7 @@ return [
     */
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'allowed_origins' => ['http://your-frontend-domain.com'],
 
     'allowed_methods' => ['*'],
 
