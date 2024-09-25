@@ -12,6 +12,8 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\CommunicationLogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,10 @@ Route::apiResource('documents', DocumentController::class);
 Route::apiResource('leads', LeadController::class);
 Route::apiResource('communication-logs', CommunicationLogController::class);
 Route::post('/register', [UserController::class, 'register']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('assign-permissions', [RolePermissionController::class, 'assignPermissions']);
+});
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
