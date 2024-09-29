@@ -9,7 +9,7 @@ class LeadSeeder extends Seeder
 {
     public function run()
     {
-        // Create 10 random leads
-        Lead::factory()->count(10)->create();
+        // Create random leads
+        Lead::factory()->count(10000)->create();
     }
 }
