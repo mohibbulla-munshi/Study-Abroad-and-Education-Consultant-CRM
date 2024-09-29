@@ -15,7 +15,7 @@ class LeadFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->numerify(str_repeat('#', 15)), // Generate a random 15-digit number
             'interested_country' => $this->faker->country(),
             'interested_course' => $this->faker->word(),
             'lead_status' => $this->faker->randomElement(['New', 'Contacted', 'Follow-up', 'Converted', 'Lost']),

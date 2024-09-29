@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
             VisaApplicationSeeder::class,
             DocumentSeeder::class,
             CommunicationLogSeeder::class,
+            LeadSeeder::class,
+            UserSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }
