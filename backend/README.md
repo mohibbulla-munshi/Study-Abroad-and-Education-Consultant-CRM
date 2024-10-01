@@ -14,6 +14,7 @@ A CRM system designed for study abroad consultancy firms to manage student appli
 - [License](#license)
 
 ## Features
+- **University and Course Management**: University Database, Course Information, Application Deadline Alerts.
 - **User Roles & Permissions**: Admin, Consultant, Visa Specialist, Finance Officer, etc.
 - **Student Management**: Manage student profiles, documents, and applications.
 - **Application Tracking**: Keep track of student applications and their statuses.
@@ -21,7 +22,7 @@ A CRM system designed for study abroad consultancy firms to manage student appli
 - **Financial Management**: Manage student payments and generate invoices.
 - **Notifications**: Send automated email and SMS notifications.
 - **Reports**: Generate reports on students, consultants, applications, and finances.
-- **University and Course Management**: University Database, Course Information, Application Deadline Alerts.
+
 
 ## Tech Stack
 - **Backend**: Laravel 10
