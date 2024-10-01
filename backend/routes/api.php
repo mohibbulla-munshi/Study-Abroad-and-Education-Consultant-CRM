@@ -2,50 +2,52 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\UniversityController;
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\AgentController;
-use App\Http\Controllers\VisaApplicationController;
-use App\Http\Controllers\DocumentController;
-use App\Http\Controllers\LeadController;
-use App\Http\Controllers\CommunicationLogController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RolePermissionController;
-use App\Http\Controllers\AuthController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+use App\Http\Controllers\{
+    StudentController,
+    CourseController,
+    UniversityController,
+    ApplicationController,
+    AgentController,
+    VisaApplicationController,
+    DocumentController,
+    LeadController,
+    CommunicationLogController,
+    UserController,
+    RolePermissionController,
+    AuthController,
+    DepartmentController,
+    CourseOfferUniversityController
+};
 
 
 
-Route::apiResource('students', StudentController::class);
-Route::apiResource('courses', CourseController::class);
-Route::apiResource('universities', UniversityController::class);
-Route::apiResource('applications', ApplicationController::class);
-Route::apiResource('agents', AgentController::class);
-Route::apiResource('visa-applications', VisaApplicationController::class);
-Route::apiResource('documents', DocumentController::class);
-Route::apiResource('leads', LeadController::class);
-Route::apiResource('communication-logs', CommunicationLogController::class);
+// Public Routes
 Route::post('/register', [UserController::class, 'register']);
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('assign-permissions', [RolePermissionController::class, 'assignPermissions']);
-});
-
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
+// Protected Routes (Requires Authentication)
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    // User and Permissions
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('assign-permissions', [RolePermissionController::class, 'assignPermissions']);
+
+    // Resource Routes
+    Route::apiResources([
+        'students'            => StudentController::class,
+        'courses'             => CourseController::class,
+        'universities'        => UniversityController::class,
+        'applications'        => ApplicationController::class,
+        'agents'              => AgentController::class,
+        'visa-applications'   => VisaApplicationController::class,
+        'documents'           => DocumentController::class,
+        'leads'               => LeadController::class,
+        'communication-logs'  => CommunicationLogController::class,
+        'departments'         => DepartmentController::class,
+        'course-offers'       => CourseOfferUniversityController::class
+    ]);
+
+});

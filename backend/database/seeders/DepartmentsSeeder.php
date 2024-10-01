@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Course;
 use Illuminate\Database\Seeder;
+use App\Models\Department;
 
-class CourseSeeder extends Seeder
+class DepartmentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Generate 50 courses
-        Course::factory()->count(10)->create();
+        // Create 10 random departments
+        Department::factory()->count(1000)->create();
     }
 }

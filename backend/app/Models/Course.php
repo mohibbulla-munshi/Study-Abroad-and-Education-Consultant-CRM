@@ -29,4 +29,15 @@ class Course extends Model
     {
         return $this->belongsTo(University::class, 'university_id');
     }
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function universities()
+    {
+        return $this->belongsToMany(University::class, 'course_university')
+                    ->withPivot('is_available_for_international_students')
+                    ->withTimestamps();
+    }
 }
