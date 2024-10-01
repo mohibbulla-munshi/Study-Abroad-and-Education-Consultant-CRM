@@ -9,7 +9,7 @@ class University extends Model
 {
     use HasFactory;
 
-    // Define the table if necessary (Laravel will use the plural of the model name otherwise)
+    // Specify the table name if necessary (Laravel defaults to plural of the model name)
     protected $table = 'universities';
 
     // Define the primary key
@@ -28,8 +28,10 @@ class University extends Model
     // Relationships
     public function courses()
     {
-        // A university has many courses
-        return $this->hasMany(Course::class, 'university_id', 'university_id');
+        // A university can offer many courses
+        return $this->belongsToMany(Course::class, 'course_offer_university')
+                    ->withPivot('is_available_for_international_students')
+                    ->withTimestamps();
     }
 
     // Optional: Add validation rules if needed
