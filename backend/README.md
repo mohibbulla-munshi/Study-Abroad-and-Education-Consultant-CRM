@@ -21,6 +21,7 @@ A CRM system designed for study abroad consultancy firms to manage student appli
 - **Financial Management**: Manage student payments and generate invoices.
 - **Notifications**: Send automated email and SMS notifications.
 - **Reports**: Generate reports on students, consultants, applications, and finances.
+- **University and Course Management**: University Database, Course Information, Application Deadline Alerts.
 
 ## Tech Stack
 - **Backend**: Laravel 10
