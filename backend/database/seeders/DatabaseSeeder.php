@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             CommunicationLogSeeder::class,
             LeadSeeder::class,
             UserSeeder::class,
-            RoleSeeder::class,
-            PermissionSeeder::class,
+            RolesSeeder::class,
+            PermissionsSeeder::class,
             DepartmentsSeeder::class,
             CourseOfferUniversitySeeder::class,
         ]);
