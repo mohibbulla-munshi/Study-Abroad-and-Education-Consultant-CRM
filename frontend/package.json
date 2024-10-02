@@ -1,0 +1,21 @@
+{
+  "name": "study_abroad_crm",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@vue/cli-service": "^4.x",
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.3.1"
+  }
+}
