@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             ApplicationsSeeder::class,
             AgentSeeder::class,
             StudentAgentSeeder::class,
-            VisaApplicationSeeder::class,
+            //VisaApplicationSeeder::class,
             DocumentSeeder::class,
             CommunicationLogSeeder::class,
             LeadSeeder::class,
