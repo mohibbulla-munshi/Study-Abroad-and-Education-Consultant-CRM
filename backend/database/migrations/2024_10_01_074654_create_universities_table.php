@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('universities', function (Blueprint $table) {
             $table->bigIncrements('university_id');
             $table->string('university_name');
@@ -35,6 +37,8 @@ return new class extends Migration
             $table->string('logo_url', 255)->nullable();                     // URL of the university logo
             $table->timestamps();                                            // created_at, updated_at
         });
+        
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

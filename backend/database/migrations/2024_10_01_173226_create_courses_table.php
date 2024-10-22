@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('courses', function (Blueprint $table) {
             // Primary Key: Unique ID for each course
             $table->id('course_id');
@@ -77,6 +79,8 @@ return new class extends Migration
                   ->on('departments')
                   ->onDelete('cascade'); // Cascade delete to remove courses if department is deleted
         });
+        
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('course_offer_universities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('university_id');
@@ -28,6 +30,8 @@ return new class extends Migration
                 ->on('courses')
                 ->onDelete('cascade');
         });
+
+        Schema::enableForeignKeyConstraints();
 
     }
 
